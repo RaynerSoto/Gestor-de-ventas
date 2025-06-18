@@ -1,9 +1,9 @@
-package classes;
+package model;
 
 
 import java.util.ArrayList;
 
 public class SalesGestor {
     
-    private ArrayList<Store> stores;
+    private ArrayList<StoreDB> stores;
 }

@@ -1,6 +1,6 @@
-package classes;
+package model;
 
-public class Product {
+public class ProductDB {
 
     private String name;
 
