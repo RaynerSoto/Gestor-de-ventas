@@ -1,4 +1,4 @@
-package model;
+package cu.edu.cujae.gestor.core.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
