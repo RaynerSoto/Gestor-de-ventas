@@ -1,0 +1,39 @@
+package cu.edu.cujae.gestor.core.model;
+
+import cu.edu.cujae.gestor.core.dto.sexoDto.SexoDto;
+import cu.edu.cujae.gestor.utils.Validacion;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "sexos",schema = "public")
+public class Sexo {
+    @Id
+    @GeneratedValue(generator = "sexo_id_generator",strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "sexo_id_generator",sequenceName = "sexo_id_generator",allocationSize = 1,initialValue = 1)
+    @NotNull(message = "El valor del ID del sexo no puede ser nulo")
+    private Long sexo_id;
+
+    @Column(name = "nombre_sexo", length = 30,nullable = false,unique = true)
+    @Size(max = 30,message = "La cantidad de caracteres máximo es 30")
+    @NotBlank(message = "El valor del nombre del sexo no puede ser nulo o estar vacío")
+    private String nombre;
+
+    public Sexo(SexoDto sexoDto) {
+        this.nombre = sexoDto.nombre();
+    }
+
+    @PrePersist
+    @PreUpdate
+    public void comprobarSexo(){
+        Validacion.validarElemento(this);
+    }
+}
