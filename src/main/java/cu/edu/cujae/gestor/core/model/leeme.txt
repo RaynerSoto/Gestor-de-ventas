@@ -1,1 +1,0 @@
-Yandy esta es la carpeta de los modelos que serán el modelo de clases del proyecto
