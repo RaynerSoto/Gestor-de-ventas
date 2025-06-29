@@ -1,5 +1,6 @@
 package cu.edu.cujae.gestor.core.model;
 
+import cu.edu.cujae.gestor.core.dto.trabajadorDto.TrabajadorDto;
 import cu.edu.cujae.gestor.utils.Validacion;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -43,6 +44,23 @@ public class Trabajador {
     @ManyToOne(optional = false)
     @JoinColumn(name = "sexo_id", nullable = false)
     private Sexo sexo;
+
+    public Trabajador(TrabajadorDto trabajadorDto,Sexo sexo, Rol rol) {
+        this.ci = trabajadorDto.ci();
+        this.nombre_completo = trabajadorDto.nombre_completo();
+        this.telefono = trabajadorDto.telefono();
+        this.rol = rol;
+        this.sexo = sexo;
+    }
+
+    public Trabajador(TrabajadorDto trabajadorDto, Sexo sexo, Rol rol, Long idTrabajador) {
+        this.ci = trabajadorDto.ci();
+        this.nombre_completo = trabajadorDto.nombre_completo();
+        this.telefono = trabajadorDto.telefono();
+        this.rol = rol;
+        this.sexo = sexo;
+        this.trabajador_id = idTrabajador;
+    }
 
     @PrePersist
     @PreUpdate
