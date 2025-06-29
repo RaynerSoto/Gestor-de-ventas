@@ -29,7 +29,7 @@ public class SexoController {
             sexoService.insertarSexo(sexoDto);
             return ResponseEntity.ok("Se insertó el sexo con nombre: " + sexoDto.nombre());
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body("Error al insertar el Sexo:" + e.getMessage());
         }
     }
 
@@ -41,7 +41,7 @@ public class SexoController {
             sexoService.modificarSexo(sexoDto,id);
             return ResponseEntity.ok("Se actualizó el sexo con ID: " + id);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body("Error al modificar el Sexo:" + e.getMessage());
         }
     }
 
@@ -53,18 +53,18 @@ public class SexoController {
             sexoService.eliminarSexo(id);
             return ResponseEntity.ok("Se eliminó el sexo con ID: " + id);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body("Error al eliminar el Sexo:" + e.getMessage());
         }
     }
 
-    @GetMapping()
+    @GetMapping("")
     @Operation(summary = "Obtener todos los sexos",
             description = "Obtiene todos los sexos del sistema.")
     public ResponseEntity<?> obtenerTodosLosSexos() {
         try {
             return ResponseEntity.ok(sexoService.listarSexo());
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body("Error al listar Sexos: " + e.getMessage());
         }
     }
 }
