@@ -18,7 +18,8 @@ public class Trabajador {
     @Id
     @GeneratedValue(generator = "trabajador_id_generator",strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "trabajador_id_generator",sequenceName = "trabajador_id_generator",allocationSize = 1,initialValue = 1)
-    private Long id;
+    @Column(name = "trabajador_id", nullable = false, unique = true, updatable = false)
+    private Long trabajador_id;
 
     @Column(unique = true, length = 11, nullable = false)
     @NotBlank(message = "El CI no puede estar vacío o ser nulo")
