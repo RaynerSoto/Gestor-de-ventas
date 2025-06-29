@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,4 +28,7 @@ public class Proyecto {
     @Column(name = "descripcion", length = 100, nullable = false, unique = true)
     @NotBlank(message = "La descripcion no puede ser nula o estar vacia.")
     private String descripcion;
+
+    @ManyToMany(mappedBy = "proyectos", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Trabajador> trabajadores;
 }

@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Collection;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -48,5 +50,16 @@ public class Trabajador {
     @PreUpdate
     public void prePersistUpdate() {
         Validacion.validarElemento(this);
+    }
+
+    @ManyToMany
+    private Collection<Proyecto> proyectos;
+
+    public Collection<Proyecto> getProyectos() {
+        return proyectos;
+    }
+
+    public void setProyectos(Collection<Proyecto> proyectos) {
+        this.proyectos = proyectos;
     }
 }
