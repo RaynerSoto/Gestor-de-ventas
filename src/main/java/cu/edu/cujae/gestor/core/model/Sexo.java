@@ -1,5 +1,7 @@
 package cu.edu.cujae.gestor.core.model;
 
+import cu.edu.cujae.gestor.core.dto.sexoDto.SexoDto;
+import cu.edu.cujae.gestor.utils.Validacion;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -24,4 +26,14 @@ public class Sexo {
     @Size(max = 30,message = "La cantidad de caracteres máximo es 30")
     @NotBlank(message = "El valor del nombre del sexo no puede ser nulo o estar vacío")
     private String nombre;
+
+    public Sexo(SexoDto sexoDto) {
+        this.nombre = sexoDto.nombre();
+    }
+
+    @PrePersist
+    @PreUpdate
+    public void comprobarSexo(){
+        Validacion.validarElemento(this);
+    }
 }
