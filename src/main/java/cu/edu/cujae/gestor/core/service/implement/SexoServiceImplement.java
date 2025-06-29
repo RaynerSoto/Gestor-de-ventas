@@ -27,7 +27,7 @@ public class SexoServiceImplement implements SexoService {
     @Override
     public void modificarSexo(SexoDto sexoDto, Long idSexo) throws SearchException {
         if (sexoRepository.findById(idSexo).isPresent()) {
-            sexoRepository.save(new Sexo(sexoDto));
+            sexoRepository.save(new Sexo(sexoDto,idSexo));
         }
         throw new SearchException("No se encontró el sexo a modificar");
     }
