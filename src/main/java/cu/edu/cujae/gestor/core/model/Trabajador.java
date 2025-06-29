@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
@@ -47,6 +48,9 @@ public class Trabajador {
     @JoinColumn(name = "sexo_id", nullable = false)
     private Sexo sexo;
 
+    @ManyToMany(mappedBy = "trabajadores", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Proyecto> proyectos;
+
     public Trabajador(TrabajadorDto trabajadorDto,Sexo sexo, Rol rol) {
         this.ci = trabajadorDto.ci();
         this.nombre_completo = trabajadorDto.nombre_completo();
@@ -66,18 +70,7 @@ public class Trabajador {
 
     @PrePersist
     @PreUpdate
-    public void prePersistUpdate() {
+    public void validarTrabajador() {
         Validacion.validarElemento(this);
-    }
-
-    @ManyToMany
-    private Collection<Proyecto> proyectos;
-
-    public Collection<Proyecto> getProyectos() {
-        return proyectos;
-    }
-
-    public void setProyectos(Collection<Proyecto> proyectos) {
-        this.proyectos = proyectos;
     }
 }

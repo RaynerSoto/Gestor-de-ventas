@@ -1,6 +1,7 @@
 package cu.edu.cujae.gestor.core.model;
 
 import cu.edu.cujae.gestor.core.dto.rolDto.RolDto;
+import cu.edu.cujae.gestor.utils.Validacion;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -42,8 +43,14 @@ public class Rol {
     }
 
     public Rol(RolDto rol, Long rolId) {
-        this.id = rolId;
+        this.rol_id = rolId;
         this.nombreRol = rol.nombreRol();
         this.description = rol.description();
+    }
+
+    @PrePersist
+    @PreUpdate
+    public void validarRol(){
+        Validacion.validarElemento(this);
     }
 }

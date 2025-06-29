@@ -46,8 +46,9 @@ public class TrabajadorServiceImplement implements TrabajadorService {
     @Override
     public void eliminarTrabajador(Long idTrabajador) throws SearchException {
         if (trabajadorRepository.existsById(idTrabajador))
-            trabajadorRepository.deleteById(idTrabajador);
-        throw new SearchException("No se encontró el trabajador a eliminar");
+            throw new SearchException("No se encontró el trabajador a eliminar");
+        trabajadorRepository.deleteById(idTrabajador);
+
     }
 
     @Override

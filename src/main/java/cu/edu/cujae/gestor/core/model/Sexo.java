@@ -44,7 +44,7 @@ public class Sexo {
 
     @PrePersist
     @PreUpdate
-    public void comprobarSexo(){
+    public void validarSexo(){
         Validacion.validarElemento(this);
     }
 }

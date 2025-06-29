@@ -28,17 +28,18 @@ public class RolServiceImplement implements RolService {
     @Override
     public void modificarRol(RolDto rol, Long rolId) throws SearchException {
         if (rolRepository.findById(rolId).isPresent()) {
-            rolRepository.save(new Rol(rol,rolId));
+            throw new SearchException("No se encontró el rol a modificar");
         }
-        throw new SearchException("No se encontró el rol a modificar");
+        rolRepository.save(new Rol(rol,rolId));
     }
 
     @Override
     public void eliminarRol(Long rolId) throws SearchException {
         if (rolRepository.findById(rolId).isPresent()) {
-            rolRepository.deleteById(rolId);
+            throw new SearchException("No se encontró el rol a eliminar");
         }
-        throw new SearchException("No se encontró el rol a eliminar");
+        rolRepository.deleteById(rolId);
+
     }
 
     @Override
