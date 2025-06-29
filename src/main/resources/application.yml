@@ -2,7 +2,7 @@ spring:
   application:
     name: Gestor
   datasource:
-    url: jdbc:postgresql://localhost:5432/
+    url: jdbc:postgresql://localhost:5432/Gestor%20de%20Proyectos
     username: ${DB_USER}
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
