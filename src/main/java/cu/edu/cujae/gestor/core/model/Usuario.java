@@ -1,5 +1,6 @@
 package cu.edu.cujae.gestor.core.model;
 
+import cu.edu.cujae.gestor.core.dto.usuarioDto.UsuarioDto;
 import cu.edu.cujae.gestor.utils.Validacion;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -44,6 +45,13 @@ public class Usuario {
     @Email(message = "El email debe ser válido")
     @NotBlank(message = "El valor del email no puede ser nulo o estar vacío")
     private String email;
+
+    public Usuario(UsuarioDto usuarioDto) {
+        this.nombre = usuarioDto.nombre();
+        this.password = usuarioDto.password();
+        this.nombre_usuario = usuarioDto.nombre_usuario();
+        this.email = usuarioDto.email();
+    }
 
     @PrePersist
     @PreUpdate

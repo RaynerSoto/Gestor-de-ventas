@@ -9,5 +9,5 @@ public interface ProyectoService {
     public void insertarProyecto(ProyectoDto proyectoDto);
     public void modificarProyecto(ProyectoDto proyectoDto, Long idProyecto) throws SearchException;
     public void eliminarProyecto(Long idProyecto) throws SearchException;
-    public List listarProyectos();
+    public List<ProyectoDto> listarProyectos();
 }
