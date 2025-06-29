@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,6 +21,7 @@ public class Sexo {
     @Id
     @GeneratedValue(generator = "sexo_id_generator",strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "sexo_id_generator",sequenceName = "sexo_id_generator",allocationSize = 1,initialValue = 1)
+    @Column(name = "sexo_id", nullable = false, unique = true, updatable = false)
     @NotNull(message = "El valor del ID del sexo no puede ser nulo")
     private Long sexo_id;
 
@@ -26,6 +29,9 @@ public class Sexo {
     @Size(max = 30,message = "La cantidad de caracteres máximo es 30")
     @NotBlank(message = "El valor del nombre del sexo no puede ser nulo o estar vacío")
     private String nombre;
+
+    @OneToMany(mappedBy = "sexo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Trabajador> trabajadores;
 
     public Sexo(SexoDto sexoDto) {
         this.nombre = sexoDto.nombre();

@@ -21,7 +21,7 @@ public class Rol {
     @GeneratedValue(generator = "rol_secuence",strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "rol_secuence",sequenceName = "rol_secuence",initialValue = 1,allocationSize = 1)
     @Column(name = "rol_id",nullable = false,updatable = false,unique = true)
-    private Long id;
+    private Long rol_id;
 
     @Column(name = "nombre_rol",unique = true,nullable = false,length = 100)
     @Size(min = 1,max = 100,message = "El nombre del rol debe tener entre 1 y 100 caracteres")
@@ -33,7 +33,7 @@ public class Rol {
     @NotBlank(message = "La descripción del rol no puede estar vacío o ser nulo")
     private String description;
 
-    @OneToMany(mappedBy = "roles", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "rol", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Trabajador> trabajador;
 
     public Rol(RolDto rol) {
