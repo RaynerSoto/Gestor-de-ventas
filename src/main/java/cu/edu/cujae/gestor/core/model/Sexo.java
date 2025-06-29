@@ -31,6 +31,11 @@ public class Sexo {
         this.nombre = sexoDto.nombre();
     }
 
+    public Sexo(SexoDto sexoDto, Long idSexo) {
+        this.nombre = sexoDto.nombre();
+        this.sexo_id = idSexo;
+    }
+
     @PrePersist
     @PreUpdate
     public void comprobarSexo(){
