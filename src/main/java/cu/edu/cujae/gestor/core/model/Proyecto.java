@@ -20,6 +20,9 @@ public class Proyecto {
     @SequenceGenerator(name = "proyecto_id", sequenceName = "proyecto_id", allocationSize = 1, initialValue = 1)
     @NotNull(message = "El valor del ID de la descripcion no puede ser nulo.")
     private Long id;
+    @Column(name = "titulo", length = 60, nullable = false, unique = true)
+    @NotBlank(message = "El titulo no puede ser nulo o estar vacio.")
+    private String titulo;
     @Column(name = "descripcion", length = 100, nullable = false, unique = true)
     @NotBlank(message = "La descripcion no puede ser nula o estar vacia.")
     private String descripcion;
