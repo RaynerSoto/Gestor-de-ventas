@@ -22,5 +22,6 @@ public class BugDB {
     private LocalDateTime creation_date;
     private LocalDateTime update_date;
 
-
+    @ManyToOne
+    private TesterDB autor;
 }

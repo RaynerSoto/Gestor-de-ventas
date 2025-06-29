@@ -3,6 +3,7 @@ package cu.edu.cujae.gestor.core.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,4 +18,7 @@ public class TesterDB {
     @Column(unique = true)
     private String first_name;
     private String last_name;
+
+    @OneToMany(mappedBy = "testers", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private ArrayList<BugDB> bugs;
 }
